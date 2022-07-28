@@ -1,4 +1,4 @@
-# Authorization project
+# Authorization app
 An app which can be used for signing up and signing in.
 
 **Made with:**
