@@ -42,7 +42,6 @@ if (form)
             body: formattedFormData
         });
         data = await response.json();
-        console.log(data)
         showErrorsOrRedirect(data["errors"]);
     }
 }
