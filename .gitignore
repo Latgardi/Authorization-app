@@ -1,0 +1,8 @@
+# Database files #
+##################
+database/*.json
+
+# Blade Cached Templates #
+##########################
+
+*.bladec
