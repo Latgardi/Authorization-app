@@ -26,6 +26,10 @@ class AuthenticationUtil
     {
         $login = ValidationUtil::validateRegistrationLogin($login);
         $response = "";
+        if (!$login['valid'])
+        {
+            $response = ERRORS['login_registration_error_invalid'];
+        }
         if (!$login['unique'])
         {
             $response = ERRORS['login_registration_error_exists'];

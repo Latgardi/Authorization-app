@@ -35,14 +35,14 @@ class ValidationUtil
     public static function validateRegistrationLogin(string $login): array
     {
         $loginMinLength = 6;
+        $isValid = (!preg_match('#\s#', $login));
         $isUnique = !DataUtil::readRecord(['login' => $login]);
         $isLong = strlen($login) > $loginMinLength;
-        return array('unique' => $isUnique, 'long' => $isLong);
+        return array('valid' => $isValid, 'unique' => $isUnique, 'long' => $isLong);
     }
 
     public static function validateRegistrationEmail(string $email): array
     {
-        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $isUnique = !DataUtil::readRecord(['email' => $email]);
         $isEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
         return array('unique' => $isUnique, 'email' => $isEmail);

@@ -6,7 +6,7 @@
     <div class="columns">
         <div class="column is-half is-offset-one-quarter">
             @if(!Auth\Authentication::isAuthorized())
-            <form class="box" method="POST" class="login" id="ajax-form">
+            <form class="box" action="/login" method="POST" class="login" id="ajax-form">
             @csrf
                 <div class="field">
                     <label for="login">Login</label>
@@ -28,7 +28,7 @@
                     </div>
                     <p class="help is-danger" id="password_error"></p>
                 </div>
-                <input type="submit" class="button is-success" value="Submit">
+                <input type="button" class="button is-success" name="submit" id="submit" value="Submit">
             </form>
             @else
                 <div class="notification is-danger">

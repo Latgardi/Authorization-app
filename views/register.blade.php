@@ -61,7 +61,7 @@
                     </div>
                     <p class="help is-danger" id="name_error"></p>
                 </div>
-                <input type="submit" class="button is-success" value="Submit">
+                <input type="button" class="button is-success" name="submit" id="submit" value="Submit">
             </form>
             @else
                 <div class="notification is-danger">

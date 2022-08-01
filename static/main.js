@@ -1,6 +1,7 @@
 const form = document.getElementById('ajax-form');
 const action = window.location.pathname;
 let data;
+let button = document.getElementById('submit');
 
 function showErrorsOrRedirect(errors)
 {
@@ -17,33 +18,35 @@ function showErrorsOrRedirect(errors)
     }
     else window.location.replace('/');
 }
-if (form)
+document.addEventListener('keypress', (event) =>
 {
-    form.addEventListener('submit', function (event)
+    let keyCode = event.keyCode ? event.keyCode : event.which;
+    if (keyCode === 13)
     {
-        event.preventDefault();
-        const formattedFormData = new FormData(form);
-        formattedFormData.append('action', action)
-        document.querySelectorAll(`[id$="error"]`).forEach(function (item)
-        {
-        item.innerHTML = "";
-        })
-        document.querySelectorAll(`[class="input is-danger"]`).forEach(function (item)
-        {
-           item.className = "input";
-        })
-        postData(formattedFormData);
-    });
-
-    async function postData(formattedFormData)
-    {
-        const response = await fetch("/index.php", {
-            method: 'POST',
-            body: formattedFormData
-        });
-        data = await response.json();
-        console.log(data)
-        showErrorsOrRedirect(data["errors"]);
+        button.click();
     }
+
+});
+button.onclick = function (event)
+{
+    event.preventDefault();
+    const formattedFormData = new FormData(form);
+    formattedFormData.append('action', action)
+    document.querySelectorAll(`[id$="error"]`).forEach(function (item) {
+        item.innerHTML = "";
+    })
+    document.querySelectorAll(`[class="input is-danger"]`).forEach(function (item) {
+        item.className = "input";
+    })
+    postData(formattedFormData);
+};
+
+async function postData(formattedFormData) {
+    const response = await fetch("/index.php", {
+        method: 'POST',
+        body: formattedFormData
+    });
+    data = await response.json();
+    showErrorsOrRedirect(data["errors"]);
 }
 

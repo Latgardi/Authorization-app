@@ -2,6 +2,7 @@
 const ERRORS = array(
     'authorization_login_error' => 'User does not exist.',
     'authorization_password_error' => 'Incorrect password.',
+    'login_registration_error_invalid' => 'Login should not contain whitespaces.',
     'login_registration_error_exists' => 'User with this login already exists.',
     'login_registration_error_length' => 'Login must be longer then 6 symbols.',
     'email_registration_error_exists' => 'User with this email already exists.',
